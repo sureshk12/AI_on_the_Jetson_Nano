@@ -3,13 +3,16 @@ import cv2
 
 print (cv2.__version__)
 
-donFace = face_recognition.load_image_file('/home/suresh/Desktop/AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known/Donald Trump.jpg')
+# dirPath = '/home/suresh/Desktop/'
+dirPath = 'D:/Python/'
+
+donFace = face_recognition.load_image_file(dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known/Donald Trump.jpg')
 donFaceEncoding = face_recognition.face_encodings(donFace)[0]
 
-nancyFace = face_recognition.load_image_file('/home/suresh/Desktop/AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known/Nancy Pelosi.jpg')
+nancyFace = face_recognition.load_image_file(dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known/Nancy Pelosi.jpg')
 nancyEncoding = face_recognition.face_encodings(nancyFace)[0]
 
-penceFace = face_recognition.load_image_file('/home/suresh/Desktop/AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known/Mike Pence.jpg')
+penceFace = face_recognition.load_image_file(dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known/Mike Pence.jpg')
 penceEncoding = face_recognition.face_encodings(penceFace)[0]
 
 Encoding = [donFaceEncoding, nancyEncoding, penceEncoding]
@@ -17,7 +20,7 @@ Names = ['Donald Trup','Nancy Pelosi', 'Mike Pence' ]
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-testImage = face_recognition.load_image_file('/home/suresh/Desktop/AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/unknown/u11.jpg')
+testImage = face_recognition.load_image_file(dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/unknown/u11.jpg')
 faceLocations = face_recognition.face_locations(testImage)
 allUnknownEncoding = face_recognition.face_encodings(testImage, faceLocations)
 
