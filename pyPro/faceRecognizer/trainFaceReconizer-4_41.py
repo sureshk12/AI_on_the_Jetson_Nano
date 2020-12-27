@@ -10,7 +10,7 @@ dirPath = '/home/suresh/Desktop/'
 Encodings = []
 Names = []
 
-imageDir = dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known1'
+imageDir = dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known'
 for root, dirs, files in os.walk(imageDir):
     # print(root)
     # print (dirs)
