@@ -3,7 +3,11 @@ import cv2
 
 print (cv2.__version__)
 
-image = face_recognition.load_image_file('/home/suresh/Desktop/AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known/Bill Barr.jpg')
+# dirPath = '/home/suresh/Desktop/'
+dirPath = 'D:/Python/'
+
+image = face_recognition.load_image_file(dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known/Bill Barr.jpg')
+
 print(image.shape)
 face_locations = face_recognition.face_locations(image)
 print (face_locations)
