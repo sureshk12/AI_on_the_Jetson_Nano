@@ -1,4 +1,6 @@
 {
+    "terminal.integrated.fontSize": 12,
     "terminal.integrated.cursorBlinking": true,
-    "terminal.integrated.fontSize": 12
+    "terminal.integrated.rendererType": "dom",
+    "python.linting.enabled": true
 }

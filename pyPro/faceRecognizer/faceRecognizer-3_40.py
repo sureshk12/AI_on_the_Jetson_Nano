@@ -3,13 +3,13 @@ import cv2
 import os
 
 print (cv2.__version__)
-# dirPath = '/home/suresh/Desktop/'
-dirPath = 'D:/Python/'
+dirPath = '/home/suresh/Desktop/'
+# dirPath = 'D:/Python/'
 
 Encodings = []
 Names = []
 
-imageDir = dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known'
+imageDir = dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known1'
 for root, dirs, files in os.walk(imageDir):
     # print(root)
     # print (dirs)
@@ -34,7 +34,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 filePos = 1
 
 while True:
-    testImage = face_recognition.load_image_file(dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/unknown/u'+str(filePos)+'.jpg')
+    testImage = face_recognition.load_image_file(dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/unknown1/u'+str(filePos)+'.jpg')
     filePos = filePos + 1
     if filePos > 13:
         filePos = 1
