@@ -4,13 +4,13 @@ import os
 import pickle
 
 print (cv2.__version__)
-dirPath = '/home/suresh/Desktop/'
-# dirPath = 'D:/Python/'
+# dirPath = '/home/suresh/Desktop/'
+dirPath = 'D:/Python/'
 
 Encodings = []
 Names = []
 
-imageDir = dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known'
+imageDir = dirPath + 'AI_on_the_Jetson_Nano/pyPro/faceRecognizer/demoImages/known1'
 for root, dirs, files in os.walk(imageDir):
     # print(root)
     # print (dirs)
