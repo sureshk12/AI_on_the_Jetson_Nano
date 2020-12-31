@@ -35,7 +35,8 @@ class camera:
 dispW = 640
 dispH = 480
 flip = 2
-cam1 = camera(0, dispW, dispH)
+camSet = 'nvarguscamerasrc ! video/x-raw(memory:NVMM), width=1280, height=720, format=NV12, framerate=10/1 ! nvvidconv flip-method='+str(flip)+' ! video/x-raw, width='+str(dispW)+', height='+str(dispH)+', format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink'
+cam1 = camera(camSet, dispW, dispH)
 startTime = time.time()
 font = cv2.FONT_HERSHEY_SIMPLEX
 ratio = 1
@@ -49,43 +50,43 @@ while True:
         frame1RGB = cv2.cvtColor(frame1Small, cv2.COLOR_BGR2RGB)
 
         faceLocations = face_recognition.face_locations(frame1RGB)
-        if len(faceLocations) > 0:
-            top, right, bottom, left = faceLocations[0][0],faceLocations[0][1], faceLocations[0][2],faceLocations[0][3]
-            # print('Top: {}, Right : {}, Bottom : {}, Left :{}'.format(top, right, bottom, left))
-            dTop = int(top/ratio)
-            dRight = int(right/ratio)
-            dBottom = int(bottom/ratio)
-            dLeft = int(left/ratio)
-            # cv2.rectangle(frame1, (dLeft, dTop), (dRight, dBottom),(0, 255, 0), 2 )
-            if (right - left) > int(180 * ratio ) and (bottom - top) > int(240 * ratio ):
-                allUnknownEncoding = face_recognition.face_encodings(frame1RGB, faceLocations)
-                for (top, right, bottom, left), face_encoding in zip (faceLocations, allUnknownEncoding) :
-                    name = 'Unknown Person'
-                    matches = face_recognition.compare_faces(Encodings, face_encoding)
+        # if len(faceLocations) > 0:
+        #     top, right, bottom, left = faceLocations[0][0],faceLocations[0][1], faceLocations[0][2],faceLocations[0][3]
+        #     # print('Top: {}, Right : {}, Bottom : {}, Left :{}'.format(top, right, bottom, left))
+        #     dTop = int(top/ratio)
+        #     dRight = int(right/ratio)
+        #     dBottom = int(bottom/ratio)
+        #     dLeft = int(left/ratio)
+        #     # cv2.rectangle(frame1, (dLeft, dTop), (dRight, dBottom),(0, 255, 0), 2 )
+        #     if (right - left) > int(180 * ratio ) and (bottom - top) > int(240 * ratio ):
+        #         allUnknownEncoding = face_recognition.face_encodings(frame1RGB, faceLocations)
+        #         for (top, right, bottom, left), face_encoding in zip (faceLocations, allUnknownEncoding) :
+        #             name = 'Unknown Person'
+        #             matches = face_recognition.compare_faces(Encodings, face_encoding)
 
-                    # # If a match was found in known_face_encodings, just use the first one.
-                    # if True in matches :
-                    # first_match_index = matches.index(True)
-                    # name = Names[first_match_index]
+        #             # # If a match was found in known_face_encodings, just use the first one.
+        #             # if True in matches :
+        #             # first_match_index = matches.index(True)
+        #             # name = Names[first_match_index]
 
-                    ## Or instead, use the known face with the smallest distance to the new face
-                    face_distances = face_recognition.face_distance(Encodings, face_encoding)
-                    best_match_index = np.argmin(face_distances)
-                    if matches[best_match_index]:
-                        name = Names[best_match_index]
+        #             ## Or instead, use the known face with the smallest distance to the new face
+        #             face_distances = face_recognition.face_distance(Encodings, face_encoding)
+        #             best_match_index = np.argmin(face_distances)
+        #             if matches[best_match_index]:
+        #                 name = Names[best_match_index]
        
-                    print(name)
-                    cv2.rectangle(frame1, (dLeft, dTop), (dRight, dBottom),(0, 255, 0), 5 )
-                    # cv2.putText(frame, name, (dLeft, dTop-7), font, 0.8, (0, 255, 0), 2)
-                    (text_width, text_height) = cv2.getTextSize(name, font, 1,1)[0]
-                    # print (text_width, text_height)
-                    cv2.rectangle(frame1, (10, 50), (10+20+text_width, 50-20-text_height), (0, 0, 0), -1)
-                    cv2.putText(frame1, name, (20, 40), font, 1, (0, 255, 0), 2)
-                    # time.sleep(10)
-            else:
-                cv2.rectangle(frame1, (dLeft, dTop), (dRight, dBottom),(255, 0, 0), 2 )
-                cv2.rectangle(frame1, (10, 480), (340, 440), (0, 0, 0), -1)
-                cv2.putText(frame1, 'Please come closer', (20, 470), font, 1, (0, 0, 255), 2 )
+        #             print(name)
+        #             cv2.rectangle(frame1, (dLeft, dTop), (dRight, dBottom),(0, 255, 0), 5 )
+        #             # cv2.putText(frame, name, (dLeft, dTop-7), font, 0.8, (0, 255, 0), 2)
+        #             (text_width, text_height) = cv2.getTextSize(name, font, 1,1)[0]
+        #             # print (text_width, text_height)
+        #             cv2.rectangle(frame1, (10, 50), (10+20+text_width, 50-20-text_height), (0, 0, 0), -1)
+        #             cv2.putText(frame1, name, (20, 40), font, 1, (0, 255, 0), 2)
+        #             # time.sleep(10)
+        #     else:
+        #         cv2.rectangle(frame1, (dLeft, dTop), (dRight, dBottom),(255, 0, 0), 2 )
+        #         cv2.rectangle(frame1, (10, 480), (340, 440), (0, 0, 0), -1)
+        #         cv2.putText(frame1, 'Please come closer', (20, 470), font, 1, (0, 0, 255), 2 )
 
 
         dt = time.time() - startTime

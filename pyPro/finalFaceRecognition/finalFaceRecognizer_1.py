@@ -10,10 +10,10 @@ print (cv2.__version__)
 dispW = 640
 dispH = 480
 flip = 2
-camSet = 'nvarguscamerasrc ! video/x-raw(memory:NVMM), width=1280, height=720, format=NV12, framerate=10/1 ! nvvidconv flip-method='+str(flip)+' ! video/x-raw, width='+str(dispW)+', height='+str(dispH)+', format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink'
+camSet = 'nvarguscamerasrc ! video/x-raw(memory:NVMM), width=1280, height=720, format=NV12, framerate=10/1 ! nvvidconv flip-method='+str(flip)+' ! video/x-raw, width='+str(dispW)+', height='+str(dispH)+', format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink max-buffers=1 drop=true'
 cam = cv2.VideoCapture(camSet)
 
-# cam = cv2.VideoCapture(0)
+# cam = cv2.VideoCapture(0)q
 
 Encodings = []
 Names = []
@@ -88,10 +88,19 @@ while True:
             cv2.rectangle(frame, (10, 480), (340, 440), (0, 0, 0), -1)
             cv2.putText(frame, 'Please come closer', (20, 470), font, 1, (0, 0, 255), 2 )
 
+
+    dt = time.perf_counter() - startTime
+    dtav = dt * 0.9 + dt * 0.1
+    fps = round((1/dtav), 2)
+    print(dtav, fps)
+    sizeString = cv2.getTextSize(str(fps),font, 0.75, 2)[0]
+    cv2.rectangle(frame, (550, 10), (550+sizeString[0], 10+sizeString[1]), (0, 0, 0), -1)
+    cv2.putText(frame, str(fps), (550, 30), font, 0.75,(0, 255, 255), 2)
+
     cv2.rectangle(frame, (185, 60), (455, 420),(0, 255, 225), 2 )
     cv2.imshow('myWindow', frame)
     cv2.moveWindow("myWindow", 0, 0)
-    print ('After disply : {}'.format(time.perf_counter() - startTime))
+
 
     keyEntered = cv2.waitKey(1)
     if keyEntered == ord('q'):
