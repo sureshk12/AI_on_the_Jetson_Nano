@@ -39,13 +39,14 @@ while True:
     frameRGB = cv2.cvtColor(frameSmall, cv2.COLOR_BGR2RGB)
 
     faceLocations = face_recognition.face_locations(frameRGB)
+
     # print ('detect Locations : {}'.format(time.perf_counter() - startTime))
     if len(faceLocations) > 0:
         tempLocation = faceLocations[0]
         top, right, bottom, left = tempLocation[0], tempLocation[1], tempLocation[2], tempLocation[3]
         if (right - left) > 150 and (bottom - top) >200: 
             allUnknownEncoding = face_recognition.face_encodings(frameRGB, faceLocations)
-            # print ('detect encodings : {}'.format(time.perf_counter() - startTime))
+
             for (top, right, bottom, left), face_encoding in zip (faceLocations, allUnknownEncoding) :
                 name = 'Unknown Person'
                 cv2.imshow('myWindow', frame )
