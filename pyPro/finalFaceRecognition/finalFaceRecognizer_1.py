@@ -17,6 +17,7 @@ cam = cv2.VideoCapture(camSet)
 
 Encodings = []
 Names = []
+name = ''
 print ('Reading Trained Data')
 
 with open ('train.pkl', 'rb') as f:
