@@ -45,7 +45,7 @@ while True:
     if len(faceLocations) > 0:
         tempLocation = faceLocations[0]
         top, right, bottom, left = tempLocation[0], tempLocation[1], tempLocation[2], tempLocation[3]
-        print('all detected location', faceLocations)
+        # print('all detected location', faceLocations)
         if (right - left) > int(140 * ratio ) and (bottom - top) > int(140 * ratio ):
             cv2.imshow('myWindow', frame)
             cv2.moveWindow("myWindow", 0, 0)
