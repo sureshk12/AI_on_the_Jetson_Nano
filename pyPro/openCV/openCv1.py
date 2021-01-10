@@ -14,8 +14,9 @@ cam = cv2.VideoCapture(camSet)
 while True:
     ret, frame = cam.read()
     frame = cv2.flip(frame, 1)
-    # frameNew = frame[:, 0:390]
-    
+    frameNew = frame[:, 0:390]
+    cv2.im
+
     cv2.imshow('Camera', frameNew)
     cv2.moveWindow('Camera', 0, 0)
     keyPressed = cv2.waitKey(1)

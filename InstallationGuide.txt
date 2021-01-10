@@ -1,0 +1,6 @@
+dpkg -L libopencv-python ==> /usr/lib/python3.6/dist-packages/cv2/python-3.6
+"python.linting.pylintArgs": ["--generate-members", "--extension-pkg-whitelist=cv2"],
+"python.autoComplete.extraPaths": ["/usr/lib/python3.6/dist-packages/cv2/python-3.6"]
+
+sudo apt-get install python3-pip cmake libopenblas-dev liblapack-dev libjpeg-dev
+sudo pip3 install face_recognition
