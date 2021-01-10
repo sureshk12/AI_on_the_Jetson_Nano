@@ -2,5 +2,7 @@
     "terminal.integrated.fontSize": 12,
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.rendererType": "dom",
-    "python.linting.enabled": true
+    "python.linting.enabled": false,
+    "python.linting.pylintArgs": ["--generate-members", "--extension-pkg-whitelist=cv2"],
+    "python.autoComplete.extraPaths": ["/usr/lib/python3.6/dist-packages/cv2/python-3.6"]
 }
