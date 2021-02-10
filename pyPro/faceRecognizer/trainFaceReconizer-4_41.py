@@ -4,8 +4,8 @@ import os
 import pickle
 
 print (cv2.__version__)
-# dirPath = '/home/suresh/Desktop/'
-dirPath = 'D:/Python/'
+dirPath = '/home/suresh/Desktop/'
+# dirPath = 'D:/Python/'
 
 Encodings = []
 Names = []
